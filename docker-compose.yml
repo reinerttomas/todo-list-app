@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./.docker/nginx/Dockerfile
+    container_name: todo-list-nginx
+    volumes:
+      - ./:/var/www/html/
+      - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./.docker/nginx/sites/:/etc/nginx/sites-available
+      - ./.docker/nginx/conf.d/:/etc/nginx/conf.d
+    depends_on:
+      - database
+      - php
+    ports:
+      - "8080:80"
+    networks:
+      - todo-list
+
+  php:
+    build:
+      context: .
+      dockerfile: ./.docker/php/Dockerfile
+    container_name: todo-list-php
+    environment:
+      TZ: Europe/Prague
+    volumes:
+      - ./:/var/www/html/
+      - .docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.dev.ini
+    depends_on:
+      - database
+    networks:
+      - todo-list
+
+  adminer:
+    image: dockette/adminer:dg
+    container_name: todo-list-adminer
+    restart: always
+    depends_on:
+      - database
+    ports:
+      - "8000:80"
+    networks:
+      - todo-list
+
+  database:
+    image: mariadb:10.6.4
+    container_name: todo-list-database
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todo_list
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass
+      TZ: Europe/Prague
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - todo-list
+
+networks:
+  todo-list:
+
+volumes:
+  db-data:
