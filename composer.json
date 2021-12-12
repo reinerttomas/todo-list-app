@@ -20,6 +20,11 @@
         "symfony/runtime": "5.4.*",
         "symfony/yaml": "5.4.*"
     },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "fakerphp/faker": "^1.17",
+        "symfony/maker-bundle": "^1.36"
+    },
     "config": {
         "allow-plugins": {
             "symfony/flex": true,
@@ -56,6 +61,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "fixtures": [
+            "bin/console doctrine:fixtures:load --no-interaction"
         ]
     },
     "conflict": {
@@ -66,8 +74,5 @@
             "allow-contrib": false,
             "require": "5.4.*"
         }
-    },
-    "require-dev": {
-        "symfony/maker-bundle": "^1.36"
     }
 }
