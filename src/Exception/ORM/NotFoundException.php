@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Exception\Logic;
+namespace App\Exception\ORM;
 
 use App\Exception\Exception;
 

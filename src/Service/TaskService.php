@@ -6,9 +6,9 @@ namespace App\Service;
 use App\Business\TaskCreateBusiness;
 use App\Business\TaskRemoveBusiness;
 use App\Business\TaskStatusBusiness;
-use App\Dto\TaskCreateRequest;
+use App\Dto\TaskRequest;
 use App\Entity\Task;
-use App\Exception\Logic\NotFoundException;
+use App\Exception\ORM\NotFoundException;
 use App\Exception\ORM\ORMRemoveException;
 use App\Exception\ORM\ORMStoreException;
 use App\Repository\TaskRepository;
@@ -41,7 +41,7 @@ class TaskService
     /**
      * @throws ORMStoreException
      */
-    public function create(TaskCreateRequest $request): Task
+    public function create(TaskRequest $request): Task
     {
         return $this->taskCreateBusiness->create($request);
     }

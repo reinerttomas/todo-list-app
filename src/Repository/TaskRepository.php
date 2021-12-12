@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Task;
-use App\Exception\Logic\NotFoundException;
+use App\Exception\ORM\NotFoundException;
 use App\Exception\ORM\ORMRemoveException;
 use App\Exception\ORM\ORMStoreException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -38,7 +38,7 @@ class TaskRepository extends ServiceEntityRepository
         $task = $this->find($id);
 
         if ($task === null) {
-            throw new NotFoundException('Task not found. ID: ' . $id);
+            throw new NotFoundException('Task not found.');
         }
 
         return $task;

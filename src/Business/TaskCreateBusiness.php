@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Business;
 
-use App\Dto\TaskCreateRequest;
+use App\Dto\TaskRequest;
 use App\Entity\Task;
 use App\Exception\ORM\ORMStoreException;
 use App\Repository\TaskRepository;
@@ -17,7 +17,7 @@ class TaskCreateBusiness
     /**
      * @throws ORMStoreException
      */
-    public function create(TaskCreateRequest $request): Task
+    public function create(TaskRequest $request): Task
     {
         $task = new Task($request->title);
 
