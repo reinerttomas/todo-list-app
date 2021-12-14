@@ -43,7 +43,7 @@ class Task
         string $title,
     ) {
         $this->title = $title;
-        $this->status = TaskStatus::NEW->value;
+        $this->changeStatus(TaskStatus::NEW);
         $this->createdAt = new DateTimeImmutable();
         $this->updatedAt = null;
     }
@@ -58,17 +58,21 @@ class Task
         return $this->title;
     }
 
+    public function changeTitle(string $title): Task
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
     public function getStatus(): TaskStatus
     {
         return TaskStatus::from($this->status);
     }
 
-    public function switchStatus(): Task
+    public function changeStatus(TaskStatus $status): Task
     {
-        $this->status = match ($this->getStatus()) {
-            TaskStatus::NEW => TaskStatus::DONE->value,
-            TaskStatus::DONE => TaskStatus::NEW->value,
-        };
+        $this->status = $status->value;
 
         return $this;
     }

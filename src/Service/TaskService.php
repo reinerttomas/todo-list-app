@@ -6,8 +6,10 @@ namespace App\Service;
 use App\Business\TaskCreateBusiness;
 use App\Business\TaskRemoveBusiness;
 use App\Business\TaskStatusBusiness;
+use App\Business\TaskUpdateBusiness;
 use App\Dto\TaskRequest;
 use App\Entity\Task;
+use App\Entity\TaskStatus;
 use App\Exception\ORM\NotFoundException;
 use App\Exception\ORM\ORMRemoveException;
 use App\Exception\ORM\ORMStoreException;
@@ -18,6 +20,7 @@ class TaskService
     public function __construct(
         private TaskRepository     $taskRepository,
         private TaskCreateBusiness $taskCreateBusiness,
+        private TaskUpdateBusiness $taskUpdateBusiness,
         private TaskStatusBusiness $taskStatusBusiness,
         private TaskRemoveBusiness $taskRemoveBusiness,
     ) {}
@@ -46,13 +49,20 @@ class TaskService
         return $this->taskCreateBusiness->create($request);
     }
 
+    /**
+     * @throws ORMStoreException
+     */
+    public function update(Task $task, TaskRequest $request): Task
+    {
+        return $this->taskUpdateBusiness->update($task, $request);
+    }
 
     /**
      * @throws ORMStoreException
      */
-    public function switchStatus(Task $task): Task
+    public function changeStatus(Task $task, TaskStatus $status): Task
     {
-        return $this->taskStatusBusiness->switchStatus($task);
+        return $this->taskStatusBusiness->changeStatus($task, $status);
     }
 
     /**

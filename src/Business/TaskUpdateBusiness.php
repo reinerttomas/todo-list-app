@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace App\Business;
 
+use App\Dto\TaskRequest;
 use App\Entity\Task;
-use App\Entity\TaskStatus;
 use App\Exception\ORM\ORMStoreException;
 use App\Repository\TaskRepository;
 
-class TaskStatusBusiness
+class TaskUpdateBusiness
 {
     public function __construct(
         private TaskRepository $taskRepository
@@ -17,10 +17,9 @@ class TaskStatusBusiness
     /**
      * @throws ORMStoreException
      */
-    public function changeStatus(Task $task, TaskStatus $status): Task
+    public function update(Task $task, TaskRequest $request): Task
     {
-        $task
-            ->changeStatus($status)
+        $task->changeTitle($request->title)
             ->updated();
 
         return $this->taskRepository->store($task);

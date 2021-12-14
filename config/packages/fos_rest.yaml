@@ -1,12 +1,14 @@
 # Read the documentation: https://symfony.com/doc/master/bundles/FOSRestBundle/index.html
 fos_rest:
+    serializer:
+        # nullable variable in response
+        serialize_null: true
+    body_listener:
+        # transform json to array from request
+        enabled: true
+        throw_exception_on_unsupported_content_type: true
     view:
         view_response_listener:  true
-    exception:
-        codes:
-            App\Exception\ORM\NotFoundException: 404
-        messages:
-            App\Exception\ORM\NotFoundException: true
     format_listener:
         rules:
-            - { path: ^/api, prefer_extension: false, fallback_format: json, priorities: [ json ] }
+            - { path: ^/api, prefer_extension: true, fallback_format: json, priorities: [ json ] }
