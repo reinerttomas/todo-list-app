@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Controller\Api;
 
@@ -18,7 +19,8 @@ class TaskController extends AbstractFOSRestController
 {
     public function __construct(
         private TaskService $taskService,
-    ) {}
+    ) {
+    }
 
     #[Rest\Get("/task")]
     public function listAction(): View

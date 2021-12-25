@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Repository;
 
@@ -12,6 +13,7 @@ use Throwable;
 
 /**
  * Class TaskRepository
+ *
  * @package App\Repository
  * @extends ServiceEntityRepository<Task>
  */
@@ -23,7 +25,7 @@ class TaskRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Task[]
+     * @return array<Task>
      */
     public function list(): array
     {

@@ -9,8 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class TaskRequest
 {
-    #[Assert\NotNull]
-    public string $title = '';
+    #[Assert\NotBlank]
+    public string $title;
 
     #[Pure]
     public static function from(Task $task): TaskRequest

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Form;
 
@@ -17,8 +18,8 @@ class TaskStatusChangeType extends AbstractType
             'status',
             EnumType::class,
             [
-                'class' => TaskStatus::class
-            ]
+                'class' => TaskStatus::class,
+            ],
         );
     }
 

@@ -31,8 +31,8 @@ phpstan:
 parallel-lint:
 	@docker exec -e APP_ENV=test -it $(PHP) composer parallel-lint
 
-css:
-	@docker exec -e APP_ENV=test -it $(PHP) composer css
+ccs:
+	@docker exec -e APP_ENV=test -it $(PHP) composer ccs
 
 fcs:
 	@docker exec -e APP_ENV=test -it $(PHP) composer fcs

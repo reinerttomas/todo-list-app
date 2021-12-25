@@ -18,15 +18,16 @@ use App\Repository\TaskRepository;
 class TaskService
 {
     public function __construct(
-        private TaskRepository     $taskRepository,
+        private TaskRepository $taskRepository,
         private TaskCreateBusiness $taskCreateBusiness,
         private TaskUpdateBusiness $taskUpdateBusiness,
         private TaskStatusBusiness $taskStatusBusiness,
         private TaskRemoveBusiness $taskRemoveBusiness,
-    ) {}
+    ) {
+    }
 
     /**
-     * @return Task[]
+     * @return array<Task>
      */
     public function list(): array
     {

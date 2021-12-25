@@ -40,6 +40,8 @@
         "phpstan/phpstan-doctrine": "^1.0",
         "phpstan/phpstan-strict-rules": "^1.1",
         "phpstan/phpstan-symfony": "^1.0",
+        "slevomat/coding-standard": "^7.0",
+        "squizlabs/php_codesniffer": "^3.6",
         "symfony/maker-bundle": "^1.36",
         "symfony/stopwatch": "5.4.*",
         "symfony/web-profiler-bundle": "5.4.*"
@@ -86,12 +88,15 @@
             "phpstan analyse -c phpstan.neon --no-progress --memory-limit 1G"
         ],
         "parallel-lint": "vendor/bin/parallel-lint --exclude vendor --colors --no-progress .",
+        "ccs": "phpcs --standard=phpcs.xml",
+        "fcs": "phpcbf --standard=phpcs.xml",
         "fixtures": [
             "bin/console doctrine:fixtures:load --no-interaction"
         ],
         "ci": [
             "@phpstan",
-            "@parallel-lint"
+            "@parallel-lint",
+            "@ccs"
         ]
     },
     "conflict": {

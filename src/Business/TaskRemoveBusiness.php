@@ -10,8 +10,9 @@ use App\Repository\TaskRepository;
 class TaskRemoveBusiness
 {
     public function __construct(
-        private TaskRepository $taskRepository
-    ) {}
+        private TaskRepository $taskRepository,
+    ) {
+    }
 
     /**
      * @throws ORMRemoveException
