@@ -115,6 +115,9 @@
             "config/packages/fos_rest.yaml"
         ]
     },
+    "jetbrains/phpstorm-attributes": {
+        "version": "1.0"
+    },
     "laminas/laminas-code": {
         "version": "4.5.0"
     },
@@ -133,8 +136,23 @@
     "phpdocumentor/type-resolver": {
         "version": "1.5.1"
     },
+    "phpstan/extension-installer": {
+        "version": "1.1.0"
+    },
     "phpstan/phpdoc-parser": {
         "version": "1.2.0"
+    },
+    "phpstan/phpstan": {
+        "version": "1.2.0"
+    },
+    "phpstan/phpstan-doctrine": {
+        "version": "1.0.2"
+    },
+    "phpstan/phpstan-strict-rules": {
+        "version": "1.1.0"
+    },
+    "phpstan/phpstan-symfony": {
+        "version": "1.0.4"
     },
     "psr/cache": {
         "version": "2.0.0"

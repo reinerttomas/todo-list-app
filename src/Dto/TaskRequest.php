@@ -13,7 +13,7 @@ class TaskRequest
     public string $title = '';
 
     #[Pure]
-    public static function from(Task $task): static
+    public static function from(Task $task): TaskRequest
     {
         $request = new TaskRequest();
         $request->title = $task->getTitle();
