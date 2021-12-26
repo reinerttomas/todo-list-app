@@ -88,21 +88,26 @@
             "@auto-scripts"
         ],
         "phpstan": [
-            "@php bin/console cache:warmup --env=test",
+            "bin/console cache:warmup --env=test",
             "phpstan analyse -c phpstan.neon --no-progress --memory-limit 1G"
         ],
         "parallel-lint": "vendor/bin/parallel-lint --exclude vendor --colors --no-progress .",
         "ccs": "phpcs --standard=phpcs.xml",
         "fcs": "phpcbf --standard=phpcs.xml",
-        "fixtures": [
-            "bin/console doctrine:fixtures:load --no-interaction"
+        "fixtures": "bin/console doctrine:fixtures:load --no-interaction",
+        "phpunit": "vendor/bin/phpunit",
+        "test": [
+            "bin/console doctrine:database:drop --force --if-exists",
+            "bin/console doctrine:database:create --if-not-exists",
+            "bin/console doctrine:migration:migrate --no-interaction",
+            "@fixtures",
+            "@phpunit"
         ],
-        "phpunit": "php vendor/bin/phpunit",
         "ci": [
             "@phpstan",
             "@parallel-lint",
             "@ccs",
-            "@phpunit"
+            "@test"
         ]
     },
     "conflict": {
