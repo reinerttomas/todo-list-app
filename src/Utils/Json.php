@@ -9,6 +9,7 @@ use Throwable;
 class Json
 {
     /**
+     * @phpstan-ignore-next-line
      * @throws JsonException
      */
     public static function encode(array $array): string
@@ -21,11 +22,13 @@ class Json
     }
 
     /**
+     * @phpstan-ignore-next-line
      * @throws JsonException
      */
     public static function decode(string $json): array
     {
         try {
+            /** @phpstan-ignore-next-line */
             return json_decode($json, true, 512, JSON_THROW_ON_ERROR);
         } catch (Throwable $e) {
             throw new JsonException($e->getMessage());
