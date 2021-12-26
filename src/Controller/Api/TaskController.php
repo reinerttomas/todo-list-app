@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
+use App\Core\HttpFilter\HttpFilterFactory;
 use App\Dto\TaskRequest;
 use App\Dto\TaskStatusChangeRequest;
 use App\Exception\ORM\NotFoundException;
@@ -19,13 +20,15 @@ class TaskController extends AbstractFOSRestController
 {
     public function __construct(
         private TaskService $taskService,
+        private HttpFilterFactory $httpFilterFactory,
     ) {
     }
 
-    #[Rest\Get("/task")]
-    public function listAction(): View
+    #[Rest\Post("/task/list")]
+    public function listAction(Request $request): View
     {
-        $tasks = $this->taskService->list();
+        $filter = $this->httpFilterFactory->create($request);
+        $tasks = $this->taskService->list($filter);
 
         return $this->view($tasks, Response::HTTP_OK);
     }

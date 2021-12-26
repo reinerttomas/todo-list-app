@@ -14,10 +14,13 @@ class TaskTest extends WebTestCase
     /**
      * @throws JsonException
      */
-    public function testGet(): void
+    public function testList(): void
     {
         $client = self::createClient();
-        $client->request('GET', 'api/task');
+        $client->request(
+            'POST',
+            'api/task/list',
+        );
 
         $response = $client->getResponse();
 
@@ -41,7 +44,7 @@ class TaskTest extends WebTestCase
      * @dataProvider provideGetByIdData
      * @throws JsonException
      */
-    public function testGetById(int $id): void
+    public function testGet(int $id): void
     {
         $client = self::createClient();
         $client->request('GET', 'api/task/' . $id);

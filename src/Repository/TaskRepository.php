@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use App\Core\HttpFilter\HttpFilterInterface;
+use App\Core\QueryFilter\QueryFilter;
 use App\Entity\Task;
 use App\Exception\ORM\NotFoundException;
 use App\Exception\ORM\ORMRemoveException;
@@ -27,9 +29,15 @@ class TaskRepository extends ServiceEntityRepository
     /**
      * @return array<Task>
      */
-    public function list(): array
+    public function list(HttpFilterInterface $filter): array
     {
-        return $this->findAll();
+        $qb = $this->createQueryBuilder('t');
+
+        $queryFilter = new QueryFilter($qb, $filter);
+
+        return $queryFilter
+            ->getQuery()
+            ->getResult();
     }
 
     /**
