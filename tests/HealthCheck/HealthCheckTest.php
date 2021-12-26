@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Tests\Task\Functional;
+namespace App\Tests\HealthCheck;
 
 use App\Exception\Runtime\JsonException;
 use App\Utils\Json;
