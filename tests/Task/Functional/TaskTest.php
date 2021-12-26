@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Task\Functional;
 
+use App\Entity\TaskStatus;
 use App\Exception\Runtime\JsonException;
 use App\Utils\Json;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -37,12 +38,13 @@ class TaskTest extends WebTestCase
     }
 
     /**
+     * @dataProvider provideGetByIdData
      * @throws JsonException
      */
-    public function testGetById(): void
+    public function testGetById(int $id): void
     {
         $client = self::createClient();
-        $client->request('GET', 'api/task/1');
+        $client->request('GET', 'api/task/' . $id);
 
         $response = $client->getResponse();
 
@@ -128,6 +130,44 @@ class TaskTest extends WebTestCase
         self::assertEquals(Response::HTTP_NO_CONTENT, $response->getStatusCode());
     }
 
+    /**
+     * @dataProvider provideStatusData
+     * @throws JsonException
+     */
+    public function testStatus(int $id, array $body): void
+    {
+        $client = self::createClient();
+        $client->request(
+            'PUT',
+            'api/task/' . $id . '/status',
+            $body,
+        );
+
+        $response = $client->getResponse();
+
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
+
+        $data = Json::decode($response->getContent());
+
+        self::assertIsArray($data);
+        self::assertArrayHasKey('id', $data);
+        self::assertArrayHasKey('title', $data);
+        self::assertArrayHasKey('status', $data);
+        self::assertArrayHasKey('createdAt', $data);
+        self::assertArrayHasKey('updatedAt', $data);
+    }
+
+    public function provideGetByIdData(): iterable
+    {
+        yield [
+            'id' => 10,
+        ];
+
+        yield [
+            'id' => 11,
+        ];
+    }
+
     public function providePostData(): iterable
     {
         yield [
@@ -146,14 +186,14 @@ class TaskTest extends WebTestCase
     public function providePutData(): iterable
     {
         yield [
-            'id' => 1,
+            'id' => 12,
             [
                 'title' => 'Úkol 1x',
             ],
         ];
 
         yield [
-            'id' => 2,
+            'id' => 13,
             [
                 'title' => 'Úkol 2x',
             ],
@@ -163,11 +203,28 @@ class TaskTest extends WebTestCase
     public function provideDeleteData(): iterable
     {
         yield [
-            'id' => 3,
+            'id' => 14,
         ];
 
         yield [
-            'id' => 4,
+            'id' => 15,
+        ];
+    }
+
+    public function provideStatusData(): iterable
+    {
+        yield [
+            'id' => 16,
+            [
+                'status' => TaskStatus::DONE->value,
+            ],
+        ];
+
+        yield [
+            'id' => 16,
+            [
+                'status' => TaskStatus::NEW->value,
+            ],
         ];
     }
 }
