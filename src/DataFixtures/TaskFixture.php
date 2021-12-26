@@ -14,11 +14,18 @@ class TaskFixture extends Fixture
     {
         $faker = Factory::create();
 
+        $task1 = new Task('Vysypat koš v pondělí');
+        $task2 = new Task('Vyzvednout balíček');
+
+        $manager->persist($task1);
+        $manager->persist($task2);
+
         for ($i = 0; $i < 100; $i++) {
             $task = new Task($faker->sentence(5));
 
             $manager->persist($task);
-            $manager->flush();
         }
+
+        $manager->flush();
     }
 }
