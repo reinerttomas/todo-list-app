@@ -6,7 +6,7 @@
     <file>config/</file>
     <file>public/</file>
     <file>src/</file>
-<!--    <file>tests/</file>-->
+    <file>tests/</file>
 
     <exclude-pattern>migrations/</exclude-pattern>
 
@@ -181,6 +181,7 @@
         <properties>
             <property name="rootNamespaces" type="array">
                 <element key="src" value="App"/>
+                <element key="tests" value="App\Tests"/>
             </property>
         </properties>
     </rule>

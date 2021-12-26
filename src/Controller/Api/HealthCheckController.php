@@ -13,6 +13,6 @@ class HealthCheckController extends AbstractFOSRestController
     #[Rest\Get("/ping")]
     public function pingAction(): View
     {
-        return View::create('pong', Response::HTTP_OK);
+        return View::create(['message' => 'pong'], Response::HTTP_OK);
     }
 }
