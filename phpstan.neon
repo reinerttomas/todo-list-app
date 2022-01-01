@@ -37,9 +37,6 @@ parameters:
         #- '#Should not use function "var_dump", please change the code.#'          # warnings for "var_dump()"
         #- '#Should not use function "phpinfo", please change the code.#'           # warnings for "phpinfo()"
         #- '#Variable method call on#'                                              # dev blog!
-        - '#Access to undefined constant App\\Entity\\[a-zA-Z]+.#'                  # php 8.1 enum workaround
-        - '#Call to an undefined static method App\\Entity\\[a-zA-Z]+::from().#'    # php 8.1 enum workaround
-        - '#Access to an undefined property App\\Entity\\[a-zA-Z]+::\$value.#'      # php 8.1 enum workaround
 
     # I don't use the Symfony PHPUnit bridge in this project, but if you do, you
     # probably will have to add the following bootstrap file:
