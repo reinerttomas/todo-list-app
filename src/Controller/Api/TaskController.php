@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
-use App\Core\HttpFilter\HttpFilterFactory;
 use App\Dto\TaskRequest;
 use App\Dto\TaskStatusChangeRequest;
 use App\Exception\ORM\NotFoundException;
+use App\Factory\HttpFilterFactory;
 use App\Form\TaskStatusChangeType;
 use App\Form\TaskType;
 use App\Service\TaskService;

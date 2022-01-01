@@ -1,8 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Core\HttpFilter;
+namespace App\Factory;
 
+use App\Core\HttpFilter\HttpFilter;
+use App\Core\HttpFilter\HttpFilterInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class HttpFilterFactory
