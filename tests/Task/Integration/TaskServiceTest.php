@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Task\Integration;
 
-use App\Core\HttpFilter\HttpFilter;
+use App\Component\Http\Filter;
 use App\Dto\TaskRequest;
 use App\Entity\Task;
 use App\Entity\TaskStatus;
@@ -28,7 +28,7 @@ class TaskServiceTest extends KernelTestCase
 
     public function testList(): void
     {
-        $filter = new HttpFilter(100, 0);
+        $filter = new Filter(100, 0);
         $tasks = $this->taskService->list($filter);
 
         self::assertIsArray($tasks);

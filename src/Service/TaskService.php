@@ -7,7 +7,7 @@ use App\Business\TaskCreateBusiness;
 use App\Business\TaskRemoveBusiness;
 use App\Business\TaskStatusBusiness;
 use App\Business\TaskUpdateBusiness;
-use App\Core\HttpFilter\HttpFilterInterface;
+use App\Component\Http\FilterInterface;
 use App\Dto\TaskRequest;
 use App\Entity\Task;
 use App\Entity\TaskStatus;
@@ -30,7 +30,7 @@ class TaskService
     /**
      * @return array<Task>
      */
-    public function list(HttpFilterInterface $filter): array
+    public function list(FilterInterface $filter): array
     {
         return $this->taskRepository->list($filter);
     }

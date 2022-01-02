@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Core\QueryFilter;
+namespace App\Component\Query;
 
-use App\Core\HttpFilter\HttpFilterInterface;
+use App\Component\Http\FilterInterface as HttpFilterInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 
-interface QueryFilterInterface
+interface FilterInterface
 {
     public function __construct(QueryBuilder $qb, HttpFilterInterface $filter);
 

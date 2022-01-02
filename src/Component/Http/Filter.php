@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Core\HttpFilter;
+namespace App\Component\Http;
 
-class HttpFilter implements HttpFilterInterface
+class Filter implements FilterInterface
 {
     private int $limit;
     private int $offset;

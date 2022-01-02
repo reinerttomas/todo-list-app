@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Core\HttpFilter;
+namespace App\Component\Http;
 
-interface HttpFilterInterface
+interface FilterInterface
 {
     public function getLimit(): int;
 
